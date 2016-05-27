@@ -5,12 +5,6 @@ import scala.language.experimental.macros
 import monocle._
 import monocle.syntax.ApplyLens
 
-object `package`{
-  implicit class ImplicitBoundLens[T]( v: T ) {
-    def lens = BoundLens( v )
-  }
-}
-
 object BoundLens {
   def apply[S]( value: S ) = new BoundLens( ApplyLens[S, S, S, S]( value, Lens.id ) )
 }
