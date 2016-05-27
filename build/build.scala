@@ -3,11 +3,12 @@ import java.net._
 import java.io.File
 import scala.collection.immutable.Seq
 
+// cbt:https://github.com/cvogt/cbt.git#cf7a66b7dfde8bb4386efe93a41f68996335db35
 class Build(context: cbt.Context) extends cbt.PublishBuild(context){
-  override def scalaVersion = "2.11.7"
+  override def defaultScalaVersion = "2.11.8"
 
-  override def version = "1.0"
-  override def artifactId = "lens_2.11"
+  override def defaultVersion = "1.0.0"
+  override def artifactId = "lens"
   override def groupId = "ai.x"
 
   object monocle{
@@ -19,7 +20,7 @@ class Build(context: cbt.Context) extends cbt.PublishBuild(context){
     val all = Seq(core, generic, macro_)
   }
 
-  override def dependencies = super.dependencies ++ monocle.all
+  override def dependencies = super.dependencies ++ Resolver( mavenCentral ).bind( monocle.all: _* )
   override def scalacOptions = super.scalacOptions ++ Seq( "-language:experimental.macros" )
 
   override def url = new URL("http://github.com/xdotai/lens")
