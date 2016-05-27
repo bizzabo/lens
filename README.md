@@ -1,5 +1,7 @@
 ## lens
 
+[![Join the chat at https://gitter.im/xdotai/lens](https://badges.gitter.im/xdotai/lens.svg)](https://gitter.im/xdotai/lens?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 User-friendly lens syntax for mortals. Update values inside of nested case class instances without .copy .
 
 (Based on [Monocle](https://github.com/julien-truffaut/Monocle))
