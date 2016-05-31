@@ -4,7 +4,16 @@
 
 User-friendly lens syntax for mortals. Update values inside of nested case class instances without .copy .
 
-(Based on [Monocle](https://github.com/julien-truffaut/Monocle))
+Based on [Monocle](https://github.com/julien-truffaut/Monocle).
+Also see https://github.com/julien-truffaut/Monocle/pull/208 and https://github.com/julien-truffaut/Monocle/pull/204 .
+
+**Use with caution.** `.copy` and likewise `.lens` can make code hard to read.
+They are conceptually creating patched versions of existing objects.
+It can be hard for readers to reason about the patching, similar to how it is hard to reason about mutation.
+If you can write your code in a way that does not need patching objects, prefer that.
+If you can't `.lens` is a nice alternative to `.copy`.
+
+
 ### SBT Dependency
 
 `"ai.x" %% "lens" % "1.0.0"`
@@ -20,6 +29,7 @@ val a = A(B(C(3)))
 
 #### Easy updates using `.lens`
 ```scala
+import ai.x.lens.ImplicitBoundLens
 A(B(C(5))) == a.lens(_.b.c.d).set( 5 )
 A(B(C(6))) == a.lens(_.b.c.d).modify( _ + 3 )
 ```
