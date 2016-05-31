@@ -20,21 +20,22 @@ val a = A(B(C(3)))
 
 #### Easy updates using `.lens`
 ```scala
-a.lens(_.b.c.d).set( 5 )
-a.lens(_.b.c.d).modify( _ + 2 )
+A(B(C(5))) == a.lens(_.b.c.d).set( 5 )
+A(B(C(6))) == a.lens(_.b.c.d).modify( _ + 3 )
 ```
 
-#### Verbose update using `.copy`
+#### Verbose updates using `.copy`
 ```scala
-a.copy(
+A(B(C(5))) == a.copy(
   b = a.b.copy(
     c = a.b.c.copy(
       d = 5
 )))
-a.copy(
+
+A(B(C(6))) == a.copy(
   b = a.b.copy(
     c = a.b.c.copy(
-      d = a.b.c.d + 2
+      d = a.b.c.d + 3
 )))
 ```
 
