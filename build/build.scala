@@ -1,15 +1,14 @@
 import cbt._
-import java.net._
-import java.io.File
+import ai.x.build.{XdotaiFreeSoftwareBuild,team}
 import scala.collection.immutable.Seq
+// cbt:https://github.com/cvogt/cbt.git#25e4d66e6abe5ef285849e710851ef84dc3ac700
+class Build(context: cbt.Context) extends cbt.PublishBuild(context) with XdotaiFreeSoftwareBuild{
+  def name = "lens"
+  def defaultVersion = "1.0.0"
+  def description = "Convenient ad-hoc lens Syntax on top of Monocle"
 
-// cbt:https://github.com/cvogt/cbt.git#f56a035e5df98bc4e2bf90a1be5a7317be7ef667
-class Build(context: cbt.Context) extends cbt.PublishBuild(context){
-  override def defaultScalaVersion = "2.11.8"
-
-  override def defaultVersion = "1.0.0"
-  override def artifactId = "lens"
-  override def groupId = "ai.x"
+  def inceptionYear = 2016
+  def developers = Seq( team.cvogt )
 
   object monocle{
     val version = "1.2.0"
@@ -21,23 +20,4 @@ class Build(context: cbt.Context) extends cbt.PublishBuild(context){
   }
 
   override def dependencies = super.dependencies ++ Resolver( mavenCentral ).bind( monocle.all: _* )
-  override def scalacOptions = super.scalacOptions ++ Seq( "-language:experimental.macros" )
-
-  override def url = new URL("http://github.com/xdotai/lens")
-  override def licenses = Seq(
-    License("Two-clause BSD-style license",
-    new URL("http://github.com/xdotai/lens/blob/master/LICENSE.txt"))
-  )
-  override def developers = Seq(
-    Developer("cvogt", "Jan Christopher Vogt", "-5", new URL("https://github.com/cvogt/"))
-  )
-  override def scmUrl = "git@github.com:xdotai/lens.git"
-  override def scmConnection = "scm:git:git@github.com:xdotai/lens.git"
-  override def description = "Convenient ad-hoc lens Syntax on top of Monocle"
-  override def pomExtra =
-    <inceptionYear>2016</inceptionYear>
-    <organization>
-        <name>x.ai</name>
-        <url>http://x.ai</url>
-    </organization>
 }
