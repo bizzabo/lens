@@ -11,7 +11,7 @@ Also see https://github.com/julien-truffaut/Monocle/pull/208 and https://github.
 They are conceptually creating patched versions of existing objects.
 It can be hard for readers to reason about the patching, similar to how it is hard to reason about mutation.
 If you can write your code in a way that does not need patching objects, prefer that.
-If you can't `.lens` is a nice alternative to `.copy`.
+If you can't, `.lens` is a nice alternative to `.copy`.
 
 
 ### SBT Dependency
@@ -49,3 +49,9 @@ A(B(C(6))) == a.copy(
 )))
 ```
 
+### Related Work
+
+ai.x.lens is very similar to [quicklens](https://github.com/adamw/quicklens),
+which implements more features to slightly reduce code size. But this also mean more learning and remembering.
+It's fair to make the trade-off in either direction. Check out quicklens if you want more features.
+Use ai.x.lens if you want something simpler.
