@@ -16,7 +16,13 @@ If you can't, `.lens` is a nice alternative to `.copy`.
 
 ### SBT Dependency
 
+#### Scala 2.11
+
 `"ai.x" %% "lens" % "1.0.0"`
+
+#### Scala 2.12
+
+`"ai.x" %% "lens" % "2.0.0"`
 
 ### Usage
 
