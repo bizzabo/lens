@@ -5,10 +5,15 @@ import com.typesafe.sbt.SbtScalariform.{ScalariformKeys, autoImport}
 import xerial.sbt.Sonatype._
 
 val projectName = "lens"
-version := "2.0.0"
+version := "2.0.1"
 name := projectName
-scalaVersion := "2.12.6"
+scalaVersion := "2.12.8"
+crossScalaVersions := Seq("2.11.11", scalaVersion.value)
 description := "Convenient ad-hoc lens Syntax on top of Monocle"
+
+useGpg := true
+
+credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credential")
 
 val monocleVersion = "1.5.0"
 libraryDependencies ++=   Seq(
@@ -28,6 +33,7 @@ scalacOptions in (Compile, doc) ++= Seq(
   "-implicits",
   "-groups"
 )
+
 scalariformPreferences := scalariformPreferences.value
       .setPreference(AlignParameters, true)
       .setPreference(AlignArguments, true)
